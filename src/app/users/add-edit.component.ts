@@ -14,6 +14,7 @@ export class AddEditComponent implements OnInit {
     isAddMode: boolean;
     loading = false;
     submitted = false;
+    Role: any = ['USER', 'ADMIN']
 
     constructor(
         private formBuilder: FormBuilder,
@@ -42,8 +43,9 @@ export class AddEditComponent implements OnInit {
         this.form = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            dob: ['', Validators.required],
+            dob: [''],
             email: ['', Validators.required],
+            roleName: ['', Validators.required],
             password: ['', passwordValidators]
         });
 
@@ -53,6 +55,18 @@ export class AddEditComponent implements OnInit {
                 .subscribe(x => this.form.patchValue(x));
         }
     }
+        // Choose city using select dropdown
+        changeRole(e) {
+            console.log(e.value)
+            this.roleName.setValue(e.target.value, {
+            onlySelf: true
+            })
+        }
+    
+        // Getter method to access formcontrols
+        get roleName() {
+            return this.form.get('roleName');
+        }
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }

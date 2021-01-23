@@ -77,9 +77,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             let params = body;
             let user = users.find(x => x.id === idFromUrl());
 
-            if (users.find(x => x.email === params.email)) {
-                return error('Email "' + params.email + '" is already taken')
-            }
+            // if (users.find(x => x.email === params.email)) {
+            //     return error('Email "' + params.email + '" is already taken')
+            // }
 
             // only update password if entered
             if (!params.password) {
